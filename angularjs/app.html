@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="sportsStore">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>爆裂里夫PowRiff</title>
+    <script src="http://cdn.bootcss.com/angular.js/1.2.5/angular.js"></script>
+    <link href="min.css" rel="stylesheet">
+
+    <script>
+        angular.module("sportsStore",["customFilters","cart","ngRoute"])
+                .config(function ($routeProvider) {
+                    $routeProvider.when("/complete",{
+                        templateUrl: "./views/thankYou.html"
+                    });
+                    $routeProvider.when("/placeorder",{
+                        templateUrl: "./views/placeOrder.html"
+                    });
+                    $routeProvider.when("/checkout",{
+                        templateUrl: "./views/checkoutSummary.html"
+                    });
+                    $routeProvider.when("/products",{
+                        templateUrl: "./views/productList.html"
+                    });
+                    $routeProvider.otherwise({
+                        templateUrl: "./views/productList.html"
+                    });
+                });
+    </script>
+    <script src="controllers/sportsStore.js"></script>
+    <script src="filters/customFilters.js"></script>
+    <script src="controllers/productListControllers.js"></script>
+    <script src="components/cart.js"></script>
+    <script src="http://cdn.bootcss.com/angular.js/1.2.5/angular-route.js"></script>
+    <script src="controllers/checkoutController.js"></script>
+</head>
+<body ng-controller="sportsStoreCtrl">
+    <div class="navbar navbar-default">
+        <a href="#" class="navbar-brand">PowRiff Music</a>
+        <cart-summary />
+    </div>
+    <div class="alert alert-danger" ng-show="data.error">
+        Error ({{data.error.status}}). The product data was not loaded.
+        <a href="/app.html" class="alert-link">点击重试</a>
+    </div>
+   <ng-view />
+</body>
+</html>

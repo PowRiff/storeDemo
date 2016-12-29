@@ -1,0 +1,49 @@
+<div class="container">
+    <h2>你的购物车</h2>
+    <div ng-controller="cartSummaryController">
+        <div class="alert alert-warning" ng-show="cartData.length == 0">
+            还没有商品在你的购物车，快去选购吧！
+            <a href="#/products" class="btn btn-primary btn-xs">返回商品页</a>
+        </div>
+        <div ng-hide="cartData.length == 0">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>商品</td>
+                        <td class="text-center">价格</td>
+                        <td class="text-center">数量</td>
+                        <td class="text-right">小计</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in cartData">
+                        <td class="text-left">{{item.name}}</td>
+                        <td class="text-center">{{item.price | currency}}</td>
+                        <td class="text-center">
+                            <button class="btn btn-default btn-xs" ng-click="reduceOne(item.id)">-</button>
+                            {{item.count}}
+                            <button class="btn btn-default btn-xs" ng-click="addOne(item.id)">+</button>
+                        </td>
+                        <td class="text-right">{{(item.price * item.count) | currency}}</td>
+                        <td>
+                            <button class="btn btn-sm btn-danger" ng-click="remove(item.id)">删除</button>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td class="text-right" colspan="3">您总共需支付：</td>
+                        <td class="text-right">
+                            {{total() | currency}}
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+            <div class="text-center">
+                <a href="#/products" class="btn btn-primary">继续购物</a>
+                <a href="#/placeorder" class="btn btn-primary">下单</a>
+                <button class="btn btn-danger pull-right" ng-controller="cartSummaryController" ng-show="itemCount() != 0" ng-click="removeAll()">清空购物车</button>
+            </div>
+        </div>
+    </div>
+</div>

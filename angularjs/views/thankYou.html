@@ -1,0 +1,10 @@
+<div class="container">
+    <div class="alert alert-danger" ng-show="data.orderError">
+        错误({{data.orderError.status}}). 下单失败！
+        <a href="#/placeorder" class="alert-link">点击重试</a>
+    </div>
+    <div class="well" ng-hide="data.orderError">
+        <h2>感谢您的支持！</h2>
+        <p>我们会尽快将商品送到您的手中。您的订单编号是：{{data.orderId}}</p>
+    </div>
+</div>

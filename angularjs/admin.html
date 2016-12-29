@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="sportsStoreAdmin">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>管理页</title>
+    <script src="http://cdn.bootcss.com/angular.js/1.2.5/angular.js"></script>
+    <script src="http://cdn.bootcss.com/angular.js/1.2.5/angular-route.js"></script>
+    <script src="ngmodules/angular-resource.js"></script>
+    <link href="min.css" rel="stylesheet">
+    <script>
+        angular.module("sportsStoreAdmin",["ngRoute","ngResource"])
+                .config(function ($routeProvider) {
+                    $routeProvider.when("/login",{
+                        templateUrl: "./views/adminLogin.html"
+                    });
+                    $routeProvider.when("/main",{
+                        templateUrl: "./views/adminMain.html"
+                    });
+                    $routeProvider.otherwise({
+                        redirectTo: "/login"
+                    });
+                });
+    </script>
+    <script src="controllers/adminControllers.js"></script>
+    <script src="controllers/adminProductController.js"></script>
+</head>
+<body>
+
+    <ng-view />
+
+</body>
+</html>
